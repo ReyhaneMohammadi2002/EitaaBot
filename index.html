@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامک تستی من</title>
+    
+    <!-- لود کردن فایل SDK ایتا -->
+    <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
+    
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>سلام به برنامک ایتا!</h1>
+        <p id="user-info">در حال بارگذاری اطلاعات...</p>
+        <button onclick="closeApp()">بستن برنامک</button>
+    </div>
+
+    <script>
+        // ۱. آماده‌سازی SDK
+        const webApp = window.Eitaa.WebApp;
+
+        // ۲. اطلاع به ایتا که برنامه آماده است
+        webApp.ready();
+
+        // ۳. گرفتن اطلاعات کاربر (مثلاً نام)
+        const user = webApp.initDataUnsafe.user;
+        if (user) {
+            document.getElementById('user-info').innerText = "خوش آمدی " + user.first_name;
+        } else {
+            document.getElementById('user-info').innerText = "اطلاعات کاربر یافت نشد (خارج از محیط ایتا باز شده)";
+        }
+
+        // ۴. تابع برای بستن برنامه
+        function closeApp() {
+            webApp.close();
+        }
+    </script>
+</body>
+</html>
