@@ -4,90 +4,256 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خانه هوش مصنوعی قم</title>
-    <!-- لود کردن کتابخانه اصلی ایتا -->
-    <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
     <style>
+        :root {
+            --primary: #4e54c8;
+            --secondary: #8f94fb;
+            --accent: #2d3436;
+            --gradient: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+        }
+
         body {
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: Tahoma, Geneva, sans-serif;
             background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-        }
-        .container {
-            background-color: #e4e7eb;
-            padding: 20px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .welcome-text {
-            font-size: 14px;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-        .button-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .btn {
-            flex: 1;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
             padding: 10px;
+            color: #2d3436;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
             border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 14px;
-            color: #444;
-            transition: background 0.3s;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .btn:hover {
-            background-color: #f9f9f9;
-        }
-        .btn-full {
+
+        .header-img {
             width: 100%;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
         }
+
+        .header-img img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .page { display: none; }
+        .active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2, h3 { color: #4e54c8; text-align: center; }
+
+        .welcome-text {
+            text-align: justify;
+            font-size: 0.95em;
+            color: #444;
+            background: #f9f9ff;
+            padding: 15px;
+            border-radius: 12px;
+            border-right: 5px solid #4e54c8;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 800; /* نوشته‌ها ضخیم‌تر شدند */
+            font-size: 1.1em; /* سایز نوشته دکمه‌ها بزرگتر شد */
+            transition: 0.3s;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .btn-main { background: var(--gradient); color: white; box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3); }
+        .btn-outline { background: white; color: #4e54c8; border: 2px solid #4e54c8; }
+        .btn-back { background: #ff7675; color: white; }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .course-item {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+            font-family: Tahoma, sans-serif;
+        }
+
+        /* راست‌چین کردن فیلد شماره تماس */
+        #userPhone {
+            direction: rtl;
+            text-align: right;
+        }
+
+        input:focus { border-color: #4e54c8; }
+
+        .contact-info p { margin: 10px 0; font-size: 0.9em; }
+        .contact-info b { color: #4e54c8; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="welcome-text">
-        به خانه هوش مصنوعی قم خوش آمدید ✨<br>
-        اینجا آموزش هوش مصنوعی فقط یادگیری نیست؛<br>
-        بلکه شروعی برای مهارت‌آموزی، اجرای پروژه و ساخت آینده شغلی شماست.<br><br>
-        ✨ مزایای دوره‌های تخصصی ما:<br>
-        • اساتید مجرب و حرفه‌ای<br>
-        • پروژه‌های عملی واقعی<br>
-        • پشتیبانی نامحدود<br>
-        • مدرک معتبر بین‌المللی<br>
-        • کمک به یافتن شغل پس از دوره<br>
-        • جلسات رفع اشکال هفتگی
+    <div class="header-img">
+        <img src="photo27912000875.jpg" alt="خانه هوش مصنوعی قم">
     </div>
 
-    <div class="button-row">
-        <div class="btn" onclick="sendMessage('درباره ما')">درباره ما</div>
-        <div class="btn" onclick="sendMessage('تماس با ما')">تماس با ما</div>
+    <div class="content">
+        <!-- صفحه اصلی -->
+        <div id="homePage" class="page active">
+            <h3>خانه هوش مصنوعی قم ✨</h3>
+            <div class="welcome-text">
+                به خانه هوش مصنوعی قم خوش آمدید ✨<br><br>
+                اینجا آموزش هوش مصنوعی فقط یادگیری نیست؛ بلکه شروعی برای مهارت‌آموزی، اجرای پروژه و ساخت آینده شغلی شماست.<br><br>
+                <b>✨ مزایای دوره‌های تخصصی ما:</b><br>
+                • اساتید مجرب و حرفه‌ای<br>
+                • پروژه‌های عملی واقعی<br>
+                • پشتیبانی نامحدود<br>
+                • مدرک معتبر بین‌المللی<br>
+                • کمک به یافتن شغل پس از دوره<br>
+                • جلسات رفع اشکال هفتگی
+            </div>
+            <button class="btn btn-main" onclick="showPage('regPage')">📋 مشاهده دوره‌ها و ثبت نام</button>
+            <a href="https://mathshome.com/" class="btn btn-outline" target="_blank">🌐 وب‌سایت مجموعه</a>
+            <button class="btn btn-outline" onclick="showPage('contactPage')">📞 ارتباط با ما</button>
+        </div>
+
+        <!-- صفحه ثبت نام -->
+        <div id="regPage" class="page">
+            <h3>لیست دوره‌های آموزشی</h3>
+            <div class="course-grid">
+                <div class="course-item">🔹 اسکرچ</div>
+                <div class="course-item">🔹 پیکتوبلاکس</div>
+                <div class="course-item">🔹 پایتون</div>
+                <div class="course-item">🔹 تولید محتوا</div>
+                <div class="course-item">🔹 طراحی سایت</div>
+                <div class="course-item">🔹 هوش مصنوعی</div>
+                <div class="course-item">🔹 ایده پولسازی</div>
+                <div class="course-item">🔹 دیجیتال مارکتینگ</div>
+                <div class="course-item">🔹 بازی سازی</div>
+                <div class="course-item">🔹 طراحی Ui/Ux</div>
+                <div class="course-item">🔹 یادگیری ماشین</div>
+                <div class="course-item">🔹 هوش مصنوعی معلمان</div>
+            </div>
+            
+            <input type="text" id="courseName" placeholder="نام دوره مورد نظر">
+            <input type="text" id="userName" placeholder="نام و نام خانوادگی شما">
+            <input type="tel" id="userPhone" placeholder="شماره تماس (همراه)">
+            
+            <button id="submitBtn" class="btn btn-main" onclick="submitRegistration()">تایید و ارسال درخواست</button>
+            <button class="btn btn-back" onclick="showPage('homePage')">بازگشت به خانه</button>
+        </div>
+
+        <!-- صفحه تماس با ما -->
+        <div id="contactPage" class="page">
+            <h3>ارتباط با خانه هوش مصنوعی قم ✨</h3>
+            <div class="contact-info welcome-text">
+                برای دریافت مشاوره، آشنایی با دوره‌ها و پاسخ به سوالات شما:<br><br>
+                📞 <b>شماره تماس:</b><br>02532939092 - 09136888588<br><br>
+                📍 <b>آدرس مجموعه:</b><br>قم، خیابان بلوار امین، کوچه 7، پلاک 8<br><br>
+                🕒 <b>ساعات کاری:</b><br>شنبه تا چهارشنبه: 16 الی 21<br>پنج‌شنبه: 9 الی 14<br><br>
+                <i>در مسیر یادگیری و رشد حرفه‌ای، کنار شما هستیم.</i>
+            </div>
+            <button class="btn btn-back" onclick="showPage('homePage')">بازگشت</button>
+        </div>
+
+        <!-- صفحه موفقیت -->
+        <div id="successPage" class="page">
+            <div style="text-align: center; padding: 30px;">
+                <h1 style="color: #4cd137; font-size: 50px;">✅</h1>
+                <h3 style="color: #2ecc71;">ثبت‌نام شما با موفقیت انجام شد!</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.</p>
+                <button class="btn btn-main" onclick="showPage('homePage')">بازگشت به صفحه اصلی</button>
+            </div>
+        </div>
     </div>
-    
-    <div class="btn btn-full" onclick="sendMessage('ثبت نام در دوره ها')">ثبت نام در دوره ها</div>
 </div>
 
 <script>
-    // آماده‌سازی WebApp ایتا
-    const webApp = window.EitaaWebApp;
-    webApp.ready();
+    const TOKEN = "bot385610:629cef28-cdfc-4cce-bd70-0a86aaa34169";
+    const CHAT_ID = "11169962";
 
-    function sendMessage(text) {
-        // این تابع پیام رو برای بات ارسال میکنه و برنامک رو میبنده
-        webApp.sendData(text);
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    async function submitRegistration() {
+        const course = document.getElementById("courseName").value;
+        const name = document.getElementById("userName").value;
+        const phone = document.getElementById("userPhone").value;
+        const btn = document.getElementById("submitBtn");
+
+        if(!course || !name || !phone) {
+            alert("لطفاً تمامی موارد را تکمیل کنید.");
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "در حال ارسال...";
+
+        const now = new Date().toLocaleString('fa-IR');
+        const text = `📥 ثبت نام جدید وب‌اپلیکیشن\n\n👤 نام: ${name}\n📞 تلفن: ${phone}\n📚 دوره: ${course}\n🕒 زمان: ${now}`;
+
+        try {
+            fetch(`https://eitaayar.ir/api/${TOKEN}/sendMessage`, {
+                method: "POST",
+                mode: 'no-cors',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ chat_id: CHAT_ID, text: text })
+            });
+
+            setTimeout(() => {
+                showPage('successPage');
+                btn.disabled = false;
+                btn.innerText = "تایید و ارسال درخواست";
+                document.getElementById("courseName").value = "";
+                document.getElementById("userName").value = "";
+                document.getElementById("userPhone").value = "";
+            }, 1000);
+
+        } catch (e) {
+            alert("مشکلی در اتصال رخ داد. لطفاً دوباره تلاش کنید.");
+            btn.disabled = false;
+            btn.innerText = "تایید و ارسال درخواست";
+        }
     }
 </script>
 
