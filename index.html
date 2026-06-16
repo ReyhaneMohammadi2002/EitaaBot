@@ -3,69 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامک تستی من</title>
-    
-    <!-- لود کردن فایل SDK ایتا -->
+    <title>خانه هوش مصنوعی قم</title>
+    <!-- لود کردن کتابخانه اصلی ایتا -->
     <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
-    
     <style>
         body {
-            font-family: Tahoma, sans-serif;
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: #f0f2f5;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f2f5;
         }
         .container {
-            background: white;
+            background-color: #e4e7eb;
             padding: 20px;
             border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
         }
-        button {
-            background-color: #0088cc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+        .welcome-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            flex: 1;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
             cursor: pointer;
+            font-size: 14px;
+            color: #444;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #f9f9f9;
+        }
+        .btn-full {
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>سلام به برنامک ایتا!</h1>
-        <p id="user-info">در حال بارگذاری اطلاعات...</p>
-        <button onclick="closeApp()">بستن برنامک</button>
+<div class="container">
+    <div class="welcome-text">
+        به خانه هوش مصنوعی قم خوش آمدید ✨<br>
+        اینجا آموزش هوش مصنوعی فقط یادگیری نیست؛<br>
+        بلکه شروعی برای مهارت‌آموزی، اجرای پروژه و ساخت آینده شغلی شماست.<br><br>
+        ✨ مزایای دوره‌های تخصصی ما:<br>
+        • اساتید مجرب و حرفه‌ای<br>
+        • پروژه‌های عملی واقعی<br>
+        • پشتیبانی نامحدود<br>
+        • مدرک معتبر بین‌المللی<br>
+        • کمک به یافتن شغل پس از دوره<br>
+        • جلسات رفع اشکال هفتگی
     </div>
 
-    <script>
-        // ۱. آماده‌سازی SDK
-        const webApp = window.Eitaa.WebApp;
+    <div class="button-row">
+        <div class="btn" onclick="sendMessage('درباره ما')">درباره ما</div>
+        <div class="btn" onclick="sendMessage('تماس با ما')">تماس با ما</div>
+    </div>
+    
+    <div class="btn btn-full" onclick="sendMessage('ثبت نام در دوره ها')">ثبت نام در دوره ها</div>
+</div>
 
-        // ۲. اطلاع به ایتا که برنامه آماده است
-        webApp.ready();
+<script>
+    // آماده‌سازی WebApp ایتا
+    const webApp = window.EitaaWebApp;
+    webApp.ready();
 
-        // ۳. گرفتن اطلاعات کاربر (مثلاً نام)
-        const user = webApp.initDataUnsafe.user;
-        if (user) {
-            document.getElementById('user-info').innerText = "خوش آمدی " + user.first_name;
-        } else {
-            document.getElementById('user-info').innerText = "اطلاعات کاربر یافت نشد (خارج از محیط ایتا باز شده)";
-        }
+    function sendMessage(text) {
+        // این تابع پیام رو برای بات ارسال میکنه و برنامک رو میبنده
+        webApp.sendData(text);
+    }
+</script>
 
-        // ۴. تابع برای بستن برنامه
-        function closeApp() {
-            webApp.close();
-        }
-    </script>
 </body>
 </html>
-
-
-
